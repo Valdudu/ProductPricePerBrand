@@ -24,25 +24,57 @@
 *}
 
 <div class="panel">
-	<h3><i class="icon icon-credit-card"></i> {l s='Product price per brand' mod='ProductPricePerBrand'}</h3>
+	<h3><i class="icon icon-credit-card"></i> {l s='Product Price Per Brand' mod='productpriceperbrand'}</h3>
 	<p>
-		<strong>{l s='Here is my new generic module!' mod='ProductPricePerBrand'}</strong><br />
-		{l s='Thanks to PrestaShop, now I have a great module.' mod='ProductPricePerBrand'}<br />
-		{l s='I can configure it using the following configuration form.' mod='ProductPricePerBrand'}
+		<strong>{l s='Create static product margin by brand or supplier' mod='productpriceperbrand'}</strong><br />
+		{l s='The module must be configured to be used' mod='productpriceperbrand'}
 	</p>
 	<br />
-	<p>
-		{l s='This module will boost your sales!' mod='ProductPricePerBrand'}
-	</p>
 </div>
 
-<div class="panel">
-	<h3><i class="icon icon-tags"></i> {l s='Documentation' mod='ProductPricePerBrand'}</h3>
-	<p>
-		&raquo; {l s='You can get a PDF documentation to configure this module' mod='ProductPricePerBrand'} :
-		<ul>
-			<li><a href="#" target="_blank">{l s='English' mod='ProductPricePerBrand'}</a></li>
-			<li><a href="#" target="_blank">{l s='French' mod='ProductPricePerBrand'}</a></li>
-		</ul>
-	</p>
+<div class="bootstrap">
+    <div class="page-head custom-tab">
+        <div class="page-head-tabs" id="head_tabs">
+            <ul class="nav">
+                <li class="active">
+                    <a href="#configure" data-toggle="tab">{l s='CONFIGURE' mod='productpriceperbrand'}</a>
+                </li>
+				{if $margin_by==1}
+					<li>
+						<a href="#manufacturer" data-toggle="tab">{l s='MANUFACTURER' mod='productpriceperbrand'}</a>
+					</li>
+				{else}
+					<li>
+						<a href="#supplier" data-toggle="tab">{l s='SUPPLIER' mod='productpriceperbrand'}</a>
+					</li>
+				{/if}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="bootstrap">
+    <!-- Module content -->
+    <div id="modulecontent" class="clearfix">
+        <!-- Tab panes -->
+        <div class="tab-content row">
+            <div class="tab-pane active" id="configure">
+                <div class="tab_cap_listing">
+                    {include file="./tabs/configure.tpl"}
+                </div>
+            </div>
+			{if $margin_by==1}
+				<div class="tab-pane" id="manufacturer">
+					<div class="tab_cap_listing">
+						{include file="./tabs/manufacturer.tpl"}
+					</div>
+				</div>
+			{else}
+				<div class="tab-pane" id="supplier">
+					<div class="tab_cap_listing">
+						{include file="./tabs/supplier.tpl"}
+					</div>
+				</div>
+			{/if}
+        </div>
+    </div>
 </div>
