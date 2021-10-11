@@ -59,7 +59,7 @@ class ProductPricePerBrand extends Module
      */
     public function install()
     {
-        Configuration::updateValue('PRODUCTPRICEPERBRAND_LIVE_MODE', false);
+        Configuration::updateValue('margin_by', 0);
         include(dirname(__FILE__).'/sql/install.php');
 
         return parent::install() &&
@@ -72,7 +72,7 @@ class ProductPricePerBrand extends Module
     {
         include(dirname(__FILE__).'/sql/uninstall.php');
 
-        Configuration::deleteByName('PRODUCTPRICEPERBRAND_LIVE_MODE');
+        Configuration::deleteByName('margin_by');
 
         return parent::uninstall();
     }
@@ -85,9 +85,11 @@ class ProductPricePerBrand extends Module
         /**
          * If values have been submitted in the form, process.
          */
-
+        if(Tools::isSubmit('saveconfiguration')){
+            Configuration::updateValue('margin_by', Tools::getValue('flexRadioDefault'));
+        }
         $this->context->smarty->assign([
-            "margin_by" => 1,
+            "margin_by" => (int)Configuration::get('margin_by'),
         ]);
 
         return $this->display(__FILE__, 'views/templates/admin/configure.tpl');        

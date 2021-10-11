@@ -39,7 +39,7 @@
                 <li class="active">
                     <a href="#configure" data-toggle="tab">{l s='CONFIGURE' mod='productpriceperbrand'}</a>
                 </li>
-				{if $margin_by==1}
+				{if $margin_by==0}
 					<li>
 						<a href="#manufacturer" data-toggle="tab">{l s='MANUFACTURER' mod='productpriceperbrand'}</a>
 					</li>
@@ -62,7 +62,7 @@
                     {include file="./tabs/configure.tpl"}
                 </div>
             </div>
-			{if $margin_by==1}
+			{if $margin_by==0}
 				<div class="tab-pane" id="manufacturer">
 					<div class="tab_cap_listing">
 						{include file="./tabs/manufacturer.tpl"}
